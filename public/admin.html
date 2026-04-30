@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Dr. Marcos Ferrão</title>
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+<!-- ===== LOGIN ===== -->
+<div id="loginContainer" class="login-container">
+  <div class="login-box">
+    <h1>🔐 Dashboard Admin</h1>
+    <p>Dr. Marcos Ferrão Advocacia</p>
+    
+    <form id="loginForm">
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="senha">Senha:</label>
+        <input type="password" id="senha" name="senha" required>
+      </div>
+      
+      <button type="submit" class="btn-login">Entrar</button>
+      <p class="error-message" id="loginError"></p>
+    </form>
+  </div>
+</div>
+
+<!-- ===== DASHBOARD ===== -->
+<div id="dashboardContainer" class="dashboard-container" style="display: none;">
+
+  <!-- Header -->
+  <header class="dashboard-header">
+    <div class="header-content">
+      <h1>📊 Dashboard de Contatos</h1>
+      <div class="header-actions">
+        <button id="exportBtn" class="btn-export">📥 Exportar CSV</button>
+        <button id="logoutBtn" class="btn-logout">Sair</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Stats -->
+  <section class="stats">
+    <div class="stat-card">
+      <h3>Total de Contatos</h3>
+      <p class="stat-number" id="totalContatos">0</p>
+    </div>
+    
+    <div class="stat-card">
+      <h3>Novos</h3>
+      <p class="stat-number novo" id="novosContatos">0</p>
+    </div>
+    
+    <div class="stat-card">
+      <h3>Respondidos</h3>
+      <p class="stat-number respondido" id="respondidosContatos">0</p>
+    </div>
+    
+    <div class="stat-card">
+      <h3>Área Mais Procurada</h3>
+      <p class="stat-number" id="areaMaisProcurada">-</p>
+    </div>
+  </section>
+
+  <!-- Filtros -->
+  <section class="filtros">
+    <div class="filtro-group">
+      <label for="filtroArea">Filtrar por Área:</label>
+      <select id="filtroArea">
+        <option value="">Todas</option>
+        <option value="Previdenciário">Previdenciário</option>
+        <option value="Trabalhista">Trabalhista</option>
+        <option value="Consumidor">Consumidor</option>
+        <option value="Cível">Cível</option>
+      </select>
+    </div>
+    
+    <div class="filtro-group">
+      <label for="filtroStatus">Filtrar por Status:</label>
+      <select id="filtroStatus">
+        <option value="">Todos</option>
+        <option value="novo">Novo</option>
+        <option value="respondido">Respondido</option>
+        <option value="arquivado">Arquivado</option>
+      </select>
+    </div>
+    
+    <div class="filtro-group">
+      <label for="buscaTermo">Buscar:</label>
+      <input type="text" id="buscaTermo" placeholder="Nome, email ou WhatsApp...">
+    </div>
+  </section>
+
+  <!-- Tabela de Contatos -->
+  <section class="contatos-section">
+    <h2>📋 Contatos Recebidos</h2>
+    
+    <div class="table-container">
+      <table id="contatosTable">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>WhatsApp</th>
+            <th>Área</th>
+            <th>Data</th>
+            <th>Status</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="contatosBody">
+          <!-- Preenchido por JavaScript -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Paginação -->
+    <div class="paginacao" id="paginacao"></div>
+  </section>
+
+  <!-- Modal de Detalhes -->
+  <div id="detalhesModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Detalhes do Contato</h2>
+      
+      <div class="detalhes-info">
+        <p><strong>Nome:</strong> <span id="detalheNome"></span></p>
+        <p><strong>Email:</strong> <span id="detalheEmail"></span></p>
+        <p><strong>WhatsApp:</strong> <span id="detalheWhatsapp"></span></p>
+        <p><strong>Área:</strong> <span id="detalheArea"></span></p>
+        <p><strong>Data:</strong> <span id="detalheData"></span></p>
+        <p><strong>Status:</strong> <span id="detalheStatus"></span></p>
+      </div>
+      
+      <div class="detalhes-mensagem">
+        <h3>Mensagem:</h3>
+        <p id="detalheMensagem"></p>
+      </div>
+      
+      <div class="detalhes-actions">
+        <select id="novoStatus">
+          <option value="novo">Novo</option>
+          <option value="respondido">Respondido</option>
+          <option value="arquivado">Arquivado</option>
+        </select>
+        <button id="atualizarStatusBtn" class="btn-atualizar">Atualizar Status</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="js/admin.js"></script>
+
+</body>
+</html>
